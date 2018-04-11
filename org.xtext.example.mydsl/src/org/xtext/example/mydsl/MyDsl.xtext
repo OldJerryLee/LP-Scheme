@@ -1,0 +1,13 @@
+grammar org.xtext.example.mydsl.MyDsl with org.eclipse.xtext.common.Terminals
+
+generate myDsl "http://www.xtext.org/example/mydsl/MyDsl"
+
+Model:
+	greetings+=Greeting;
+	
+Greeting:
+	'(' Op value=INT value=INT ')' | value=INT;
+
+Op:
+	'+'|'-'|'*'|'expt'|'/'
+;
