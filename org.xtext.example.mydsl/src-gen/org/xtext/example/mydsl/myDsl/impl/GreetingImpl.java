@@ -4,12 +4,15 @@
 package org.xtext.example.mydsl.myDsl.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import org.xtext.example.mydsl.myDsl.Expressao;
 import org.xtext.example.mydsl.myDsl.Greeting;
 import org.xtext.example.mydsl.myDsl.MyDslPackage;
 
@@ -22,6 +25,7 @@ import org.xtext.example.mydsl.myDsl.MyDslPackage;
  * </p>
  * <ul>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.GreetingImpl#getValue <em>Value</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.impl.GreetingImpl#getExp <em>Exp</em>}</li>
  * </ul>
  *
  * @generated
@@ -47,6 +51,16 @@ public class GreetingImpl extends MinimalEObjectImpl.Container implements Greeti
    * @ordered
    */
   protected int value = VALUE_EDEFAULT;
+
+  /**
+   * The cached value of the '{@link #getExp() <em>Exp</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getExp()
+   * @generated
+   * @ordered
+   */
+  protected Expressao exp;
 
   /**
    * <!-- begin-user-doc -->
@@ -97,6 +111,70 @@ public class GreetingImpl extends MinimalEObjectImpl.Container implements Greeti
    * <!-- end-user-doc -->
    * @generated
    */
+  public Expressao getExp()
+  {
+    return exp;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetExp(Expressao newExp, NotificationChain msgs)
+  {
+    Expressao oldExp = exp;
+    exp = newExp;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MyDslPackage.GREETING__EXP, oldExp, newExp);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setExp(Expressao newExp)
+  {
+    if (newExp != exp)
+    {
+      NotificationChain msgs = null;
+      if (exp != null)
+        msgs = ((InternalEObject)exp).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.GREETING__EXP, null, msgs);
+      if (newExp != null)
+        msgs = ((InternalEObject)newExp).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.GREETING__EXP, null, msgs);
+      msgs = basicSetExp(newExp, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.GREETING__EXP, newExp, newExp));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case MyDslPackage.GREETING__EXP:
+        return basicSetExp(null, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
@@ -104,6 +182,8 @@ public class GreetingImpl extends MinimalEObjectImpl.Container implements Greeti
     {
       case MyDslPackage.GREETING__VALUE:
         return getValue();
+      case MyDslPackage.GREETING__EXP:
+        return getExp();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -120,6 +200,9 @@ public class GreetingImpl extends MinimalEObjectImpl.Container implements Greeti
     {
       case MyDslPackage.GREETING__VALUE:
         setValue((Integer)newValue);
+        return;
+      case MyDslPackage.GREETING__EXP:
+        setExp((Expressao)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -138,6 +221,9 @@ public class GreetingImpl extends MinimalEObjectImpl.Container implements Greeti
       case MyDslPackage.GREETING__VALUE:
         setValue(VALUE_EDEFAULT);
         return;
+      case MyDslPackage.GREETING__EXP:
+        setExp((Expressao)null);
+        return;
     }
     super.eUnset(featureID);
   }
@@ -154,6 +240,8 @@ public class GreetingImpl extends MinimalEObjectImpl.Container implements Greeti
     {
       case MyDslPackage.GREETING__VALUE:
         return value != VALUE_EDEFAULT;
+      case MyDslPackage.GREETING__EXP:
+        return exp != null;
     }
     return super.eIsSet(featureID);
   }

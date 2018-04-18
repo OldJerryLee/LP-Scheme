@@ -50,10 +50,152 @@ public class MyDslParsingTest {
     }
   }
   
+  @Test
+  public void Sum2() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("(+ 10 10 3 4)");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      Assert.assertTrue(result.eResource().getErrors().isEmpty());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  @Test
   public void expt() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("(expt 2 3)");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      Assert.assertTrue(result.eResource().getErrors().isEmpty());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  @Test
+  public void exptComExp() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("(expt (+ 2 3) 3)");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      Assert.assertTrue(result.eResource().getErrors().isEmpty());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  @Test
+  public void expressao() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("(* 4 (+ 5 (- 4 1)))");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      Assert.assertTrue(result.eResource().getErrors().isEmpty());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  @Test
+  public void fatIncompleto() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("(* 3 (factorial (- 4 1)))");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      Assert.assertTrue(result.eResource().getErrors().isEmpty());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  @Test
+  public void fatIncompleto2() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("(* n (factorial (- n 1)))");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      Assert.assertTrue(result.eResource().getErrors().isEmpty());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  @Test
+  public void predicado() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("(<= n 2)");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      Assert.assertTrue(result.eResource().getErrors().isEmpty());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  @Test
+  public void selecao() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("(cond ((< n 0) (#f))");
+      _builder.newLine();
+      _builder.append("      ");
+      _builder.append("((<= n 1) (1))");
+      _builder.newLine();
+      _builder.append("        ");
+      _builder.append("(else (* n (factorial (- n 1)))))");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      Assert.assertTrue(result.eResource().getErrors().isEmpty());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  @Test
+  public void define() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("(define factorial (n))");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      Assert.assertTrue(result.eResource().getErrors().isEmpty());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  @Test
+  public void FATORIAL() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("(define factorial (n)");
+      _builder.newLine();
+      _builder.append(" ");
+      _builder.append("(cond ((< n 0) (#f))");
+      _builder.newLine();
+      _builder.append("         ");
+      _builder.append("((<= n 1) (1))");
+      _builder.newLine();
+      _builder.append("         ");
+      _builder.append("(else (* n (factorial (- n 1))))))");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);

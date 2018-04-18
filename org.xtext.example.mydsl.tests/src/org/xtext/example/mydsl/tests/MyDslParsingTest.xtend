@@ -35,6 +35,16 @@ class MyDslParsingTest {
 		Assert.assertTrue(result.eResource.errors.isEmpty)
 	}
 	
+	@Test
+	def void Sum2() {
+		val result = parseHelper.parse('''
+			(+ 10 10 3 4)
+		''')
+		Assert.assertNotNull(result)
+		Assert.assertTrue(result.eResource.errors.isEmpty)
+	}
+	
+	@Test
 		def void expt() {
 		val result = parseHelper.parse('''
 			(expt 2 3)
@@ -42,4 +52,87 @@ class MyDslParsingTest {
 		Assert.assertNotNull(result)
 		Assert.assertTrue(result.eResource.errors.isEmpty)
 	}
+	@Test
+		def void exptComExp() {
+		val result = parseHelper.parse('''
+			(expt (+ 2 3) 3)
+		''')
+		Assert.assertNotNull(result)
+		Assert.assertTrue(result.eResource.errors.isEmpty)
+	}
+	
+	
+	@Test
+		def void expressao() {
+		val result = parseHelper.parse('''
+			(* 4 (+ 5 (- 4 1)))
+		''')
+		Assert.assertNotNull(result)
+		Assert.assertTrue(result.eResource.errors.isEmpty)
+	}
+	
+	
+	@Test
+		def void fatIncompleto() {
+		val result = parseHelper.parse('''
+			(* 3 (factorial (- 4 1)))
+		''')
+		Assert.assertNotNull(result)
+		Assert.assertTrue(result.eResource.errors.isEmpty)
+	}
+	
+	
+	@Test
+		def void fatIncompleto2() {
+		val result = parseHelper.parse('''
+			(* n (factorial (- n 1)))
+		''')
+		Assert.assertNotNull(result)
+		Assert.assertTrue(result.eResource.errors.isEmpty)
+	}
+	
+		@Test
+		def void predicado() {
+		val result = parseHelper.parse('''
+			(<= n 2)
+		''')
+		Assert.assertNotNull(result)
+		Assert.assertTrue(result.eResource.errors.isEmpty)
+	}
+	
+	@Test
+		def void selecao() {
+		val result = parseHelper.parse('''
+			 (cond ((< n 0) (#f))
+			       ((<= n 1) (1))
+			         (else (* n (factorial (- n 1)))))
+		''')
+		Assert.assertNotNull(result)
+		Assert.assertTrue(result.eResource.errors.isEmpty)
+	}
+	
+	
+	
+		@Test
+		def void define() {
+		val result = parseHelper.parse('''
+		(define factorial (n))
+		''')
+		Assert.assertNotNull(result)
+		Assert.assertTrue(result.eResource.errors.isEmpty)
+	}
+	
+		@Test
+		def void FATORIAL() {
+		val result = parseHelper.parse('''
+		(define factorial (n)
+		 (cond ((< n 0) (#f))
+		         ((<= n 1) (1))
+		         (else (* n (factorial (- n 1))))))
+		''')
+		Assert.assertNotNull(result)
+		Assert.assertTrue(result.eResource.errors.isEmpty)
+	}
+	
+	
 }

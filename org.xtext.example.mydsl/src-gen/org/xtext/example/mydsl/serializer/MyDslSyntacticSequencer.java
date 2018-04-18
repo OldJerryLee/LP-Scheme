@@ -10,6 +10,10 @@ import org.eclipse.xtext.IGrammarAccess;
 import org.eclipse.xtext.RuleCall;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.serializer.analysis.GrammarAlias.AbstractElementAlias;
+import org.eclipse.xtext.serializer.analysis.GrammarAlias.AlternativeAlias;
+import org.eclipse.xtext.serializer.analysis.GrammarAlias.GroupAlias;
+import org.eclipse.xtext.serializer.analysis.GrammarAlias.TokenAlias;
+import org.eclipse.xtext.serializer.analysis.ISyntacticSequencerPDAProvider.ISynNavigable;
 import org.eclipse.xtext.serializer.analysis.ISyntacticSequencerPDAProvider.ISynTransition;
 import org.eclipse.xtext.serializer.sequencer.AbstractSyntacticSequencer;
 import org.xtext.example.mydsl.services.MyDslGrammarAccess;
@@ -18,16 +22,26 @@ import org.xtext.example.mydsl.services.MyDslGrammarAccess;
 public class MyDslSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected MyDslGrammarAccess grammarAccess;
+	protected AbstractElementAlias match_Expressao_Greeting_PredicadoParserRuleCall_2_or___LeftParenthesisKeyword_0_OpParserRuleCall_1_0_q_SIMBOLOTerminalRuleCall_2_2_SIMBOLOTerminalRuleCall_3_2_a_RightParenthesisKeyword_4__;
+	protected AbstractElementAlias match_Expressao_OpParserRuleCall_1_0_q;
+	protected AbstractElementAlias match_Expressao_SIMBOLOTerminalRuleCall_3_2_a;
 	
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (MyDslGrammarAccess) access;
+		match_Expressao_Greeting_PredicadoParserRuleCall_2_or___LeftParenthesisKeyword_0_OpParserRuleCall_1_0_q_SIMBOLOTerminalRuleCall_2_2_SIMBOLOTerminalRuleCall_3_2_a_RightParenthesisKeyword_4__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getExpressaoAccess().getLeftParenthesisKeyword_0()), new TokenAlias(false, true, grammarAccess.getExpressaoAccess().getOpParserRuleCall_1_0()), new TokenAlias(false, false, grammarAccess.getExpressaoAccess().getSIMBOLOTerminalRuleCall_2_2()), new TokenAlias(true, true, grammarAccess.getExpressaoAccess().getSIMBOLOTerminalRuleCall_3_2()), new TokenAlias(false, false, grammarAccess.getExpressaoAccess().getRightParenthesisKeyword_4())), new TokenAlias(false, false, grammarAccess.getGreetingAccess().getPredicadoParserRuleCall_2()));
+		match_Expressao_OpParserRuleCall_1_0_q = new TokenAlias(false, true, grammarAccess.getExpressaoAccess().getOpParserRuleCall_1_0());
+		match_Expressao_SIMBOLOTerminalRuleCall_3_2_a = new TokenAlias(true, true, grammarAccess.getExpressaoAccess().getSIMBOLOTerminalRuleCall_3_2());
 	}
 	
 	@Override
 	protected String getUnassignedRuleCallToken(EObject semanticObject, RuleCall ruleCall, INode node) {
 		if (ruleCall.getRule() == grammarAccess.getOpRule())
 			return getOpToken(semanticObject, ruleCall, node);
+		else if (ruleCall.getRule() == grammarAccess.getPredicadoRule())
+			return getPredicadoToken(semanticObject, ruleCall, node);
+		else if (ruleCall.getRule() == grammarAccess.getSIMBOLORule())
+			return getSIMBOLOToken(semanticObject, ruleCall, node);
 		return "";
 	}
 	
@@ -42,14 +56,92 @@ public class MyDslSyntacticSequencer extends AbstractSyntacticSequencer {
 		return "+";
 	}
 	
+	/**
+	 * Predicado:
+	 * 	
+	 * 	'(' Comparador (SIMBOLO) (SIMBOLO) ')'
+	 * ;
+	 */
+	protected String getPredicadoToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (node != null)
+			return getTokenText(node);
+		return "(>)";
+	}
+	
+	/**
+	 * terminal
+	 * SIMBOLO:
+	 * 	('a'..'z'|'A'..'Z'|'-'|'0'..'9'| '#') ('a'..'z'|'A'..'Z'|'-')*
+	 * ;
+	 */
+	protected String getSIMBOLOToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (node != null)
+			return getTokenText(node);
+		return "";
+	}
+	
 	@Override
 	protected void emitUnassignedTokens(EObject semanticObject, ISynTransition transition, INode fromNode, INode toNode) {
 		if (transition.getAmbiguousSyntaxes().isEmpty()) return;
 		List<INode> transitionNodes = collectNodes(fromNode, toNode);
 		for (AbstractElementAlias syntax : transition.getAmbiguousSyntaxes()) {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
-			acceptNodes(getLastNavigableState(), syntaxNodes);
+			if (match_Expressao_Greeting_PredicadoParserRuleCall_2_or___LeftParenthesisKeyword_0_OpParserRuleCall_1_0_q_SIMBOLOTerminalRuleCall_2_2_SIMBOLOTerminalRuleCall_3_2_a_RightParenthesisKeyword_4__.equals(syntax))
+				emit_Expressao_Greeting_PredicadoParserRuleCall_2_or___LeftParenthesisKeyword_0_OpParserRuleCall_1_0_q_SIMBOLOTerminalRuleCall_2_2_SIMBOLOTerminalRuleCall_3_2_a_RightParenthesisKeyword_4__(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_Expressao_OpParserRuleCall_1_0_q.equals(syntax))
+				emit_Expressao_OpParserRuleCall_1_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_Expressao_SIMBOLOTerminalRuleCall_3_2_a.equals(syntax))
+				emit_Expressao_SIMBOLOTerminalRuleCall_3_2_a(semanticObject, getLastNavigableState(), syntaxNodes);
+			else acceptNodes(getLastNavigableState(), syntaxNodes);
 		}
 	}
 
+	/**
+	 * Ambiguous syntax:
+	 *     Predicado | ('(' Op? SIMBOLO SIMBOLO* ')')
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) (ambiguity) (rule start)
+	 */
+	protected void emit_Expressao_Greeting_PredicadoParserRuleCall_2_or___LeftParenthesisKeyword_0_OpParserRuleCall_1_0_q_SIMBOLOTerminalRuleCall_2_2_SIMBOLOTerminalRuleCall_3_2_a_RightParenthesisKeyword_4__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     Op?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) '(' (ambiguity) Exp=Expressao
+	 *     (rule start) '(' (ambiguity) SIMBOLO SIMBOLO* ')' (rule start)
+	 *     (rule start) '(' (ambiguity) SIMBOLO SIMBOLO* Exp=Expressao
+	 *     (rule start) '(' (ambiguity) SIMBOLO SIMBOLO* value=INT
+	 *     (rule start) '(' (ambiguity) value=INT
+	 */
+	protected void emit_Expressao_OpParserRuleCall_1_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     SIMBOLO*
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) '(' Op? SIMBOLO (ambiguity) ')' (rule start)
+	 *     (rule start) '(' Op? SIMBOLO (ambiguity) Exp=Expressao
+	 *     (rule start) '(' Op? SIMBOLO (ambiguity) value=INT
+	 *     Exp=Expressao (ambiguity) ')' (rule end)
+	 *     Exp=Expressao (ambiguity) Exp=Expressao
+	 *     Exp=Expressao (ambiguity) value=INT
+	 *     name=ID SIMBOLO (ambiguity) ')' (rule end)
+	 *     name=ID SIMBOLO (ambiguity) Exp=Expressao
+	 *     name=ID SIMBOLO (ambiguity) value=INT
+	 *     value=INT (ambiguity) ')' (rule end)
+	 *     value=INT (ambiguity) Exp=Expressao
+	 *     value=INT (ambiguity) value=INT
+	 */
+	protected void emit_Expressao_SIMBOLOTerminalRuleCall_3_2_a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
 }

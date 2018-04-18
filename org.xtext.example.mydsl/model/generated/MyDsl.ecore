@@ -7,5 +7,15 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Greeting">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Exp" eType="#//Expressao"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Expressao" eSuperTypes="#//Greeting">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Selecao" eSuperTypes="#//Greeting"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Define" eSuperTypes="#//Greeting">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Sel" eType="#//Selecao"
+        containment="true"/>
   </eClassifiers>
 </ecore:EPackage>

@@ -105,13 +105,151 @@ public interface MyDslPackage extends EPackage
   int GREETING__VALUE = 0;
 
   /**
+   * The feature id for the '<em><b>Exp</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int GREETING__EXP = 1;
+
+  /**
    * The number of structural features of the '<em>Greeting</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int GREETING_FEATURE_COUNT = 1;
+  int GREETING_FEATURE_COUNT = 2;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.ExpressaoImpl <em>Expressao</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.myDsl.impl.ExpressaoImpl
+   * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getExpressao()
+   * @generated
+   */
+  int EXPRESSAO = 2;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPRESSAO__VALUE = GREETING__VALUE;
+
+  /**
+   * The feature id for the '<em><b>Exp</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPRESSAO__EXP = GREETING__EXP;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPRESSAO__NAME = GREETING_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Expressao</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPRESSAO_FEATURE_COUNT = GREETING_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.SelecaoImpl <em>Selecao</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.myDsl.impl.SelecaoImpl
+   * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getSelecao()
+   * @generated
+   */
+  int SELECAO = 3;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SELECAO__VALUE = GREETING__VALUE;
+
+  /**
+   * The feature id for the '<em><b>Exp</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SELECAO__EXP = GREETING__EXP;
+
+  /**
+   * The number of structural features of the '<em>Selecao</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SELECAO_FEATURE_COUNT = GREETING_FEATURE_COUNT + 0;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.DefineImpl <em>Define</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.myDsl.impl.DefineImpl
+   * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getDefine()
+   * @generated
+   */
+  int DEFINE = 4;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DEFINE__VALUE = GREETING__VALUE;
+
+  /**
+   * The feature id for the '<em><b>Exp</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DEFINE__EXP = GREETING__EXP;
+
+  /**
+   * The feature id for the '<em><b>Sel</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DEFINE__SEL = GREETING_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Define</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DEFINE_FEATURE_COUNT = GREETING_FEATURE_COUNT + 1;
 
 
   /**
@@ -155,6 +293,69 @@ public interface MyDslPackage extends EPackage
    * @generated
    */
   EAttribute getGreeting_Value();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.myDsl.Greeting#getExp <em>Exp</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Exp</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Greeting#getExp()
+   * @see #getGreeting()
+   * @generated
+   */
+  EReference getGreeting_Exp();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.Expressao <em>Expressao</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Expressao</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Expressao
+   * @generated
+   */
+  EClass getExpressao();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.Expressao#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Expressao#getName()
+   * @see #getExpressao()
+   * @generated
+   */
+  EAttribute getExpressao_Name();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.Selecao <em>Selecao</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Selecao</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Selecao
+   * @generated
+   */
+  EClass getSelecao();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.Define <em>Define</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Define</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Define
+   * @generated
+   */
+  EClass getDefine();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.myDsl.Define#getSel <em>Sel</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Sel</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Define#getSel()
+   * @see #getDefine()
+   * @generated
+   */
+  EReference getDefine_Sel();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -214,6 +415,60 @@ public interface MyDslPackage extends EPackage
      * @generated
      */
     EAttribute GREETING__VALUE = eINSTANCE.getGreeting_Value();
+
+    /**
+     * The meta object literal for the '<em><b>Exp</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference GREETING__EXP = eINSTANCE.getGreeting_Exp();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.ExpressaoImpl <em>Expressao</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.myDsl.impl.ExpressaoImpl
+     * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getExpressao()
+     * @generated
+     */
+    EClass EXPRESSAO = eINSTANCE.getExpressao();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute EXPRESSAO__NAME = eINSTANCE.getExpressao_Name();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.SelecaoImpl <em>Selecao</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.myDsl.impl.SelecaoImpl
+     * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getSelecao()
+     * @generated
+     */
+    EClass SELECAO = eINSTANCE.getSelecao();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.DefineImpl <em>Define</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.myDsl.impl.DefineImpl
+     * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getDefine()
+     * @generated
+     */
+    EClass DEFINE = eINSTANCE.getDefine();
+
+    /**
+     * The meta object literal for the '<em><b>Sel</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference DEFINE__SEL = eINSTANCE.getDefine_Sel();
 
   }
 

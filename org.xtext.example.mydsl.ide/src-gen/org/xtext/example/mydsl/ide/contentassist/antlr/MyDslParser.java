@@ -33,11 +33,29 @@ public class MyDslParser extends AbstractContentAssistParser {
 				{
 					put(grammarAccess.getGreetingAccess().getAlternatives(), "rule__Greeting__Alternatives");
 					put(grammarAccess.getOpAccess().getAlternatives(), "rule__Op__Alternatives");
-					put(grammarAccess.getGreetingAccess().getGroup_0(), "rule__Greeting__Group_0__0");
+					put(grammarAccess.getExpressaoAccess().getAlternatives_1(), "rule__Expressao__Alternatives_1");
+					put(grammarAccess.getExpressaoAccess().getAlternatives_2(), "rule__Expressao__Alternatives_2");
+					put(grammarAccess.getExpressaoAccess().getAlternatives_3(), "rule__Expressao__Alternatives_3");
+					put(grammarAccess.getComparadorAccess().getAlternatives(), "rule__Comparador__Alternatives");
+					put(grammarAccess.getExpressaoAccess().getGroup(), "rule__Expressao__Group__0");
+					put(grammarAccess.getPredicadoAccess().getGroup(), "rule__Predicado__Group__0");
+					put(grammarAccess.getSelecaoAccess().getGroup(), "rule__Selecao__Group__0");
+					put(grammarAccess.getSelecaoAccess().getGroup_2(), "rule__Selecao__Group_2__0");
+					put(grammarAccess.getSelecaoAccess().getGroup_2_1(), "rule__Selecao__Group_2_1__0");
+					put(grammarAccess.getSelecaoAccess().getGroup_3(), "rule__Selecao__Group_3__0");
+					put(grammarAccess.getDefineAccess().getGroup(), "rule__Define__Group__0");
 					put(grammarAccess.getModelAccess().getGreetingsAssignment(), "rule__Model__GreetingsAssignment");
-					put(grammarAccess.getGreetingAccess().getValueAssignment_0_2(), "rule__Greeting__ValueAssignment_0_2");
-					put(grammarAccess.getGreetingAccess().getValueAssignment_0_3(), "rule__Greeting__ValueAssignment_0_3");
 					put(grammarAccess.getGreetingAccess().getValueAssignment_1(), "rule__Greeting__ValueAssignment_1");
+					put(grammarAccess.getExpressaoAccess().getNameAssignment_1_1(), "rule__Expressao__NameAssignment_1_1");
+					put(grammarAccess.getExpressaoAccess().getValueAssignment_2_0(), "rule__Expressao__ValueAssignment_2_0");
+					put(grammarAccess.getExpressaoAccess().getExpAssignment_2_1(), "rule__Expressao__ExpAssignment_2_1");
+					put(grammarAccess.getExpressaoAccess().getValueAssignment_3_0(), "rule__Expressao__ValueAssignment_3_0");
+					put(grammarAccess.getExpressaoAccess().getExpAssignment_3_1(), "rule__Expressao__ExpAssignment_3_1");
+					put(grammarAccess.getSelecaoAccess().getExpAssignment_2_1_1(), "rule__Selecao__ExpAssignment_2_1_1");
+					put(grammarAccess.getSelecaoAccess().getExpAssignment_2_1_2(), "rule__Selecao__ExpAssignment_2_1_2");
+					put(grammarAccess.getSelecaoAccess().getExpAssignment_3_2(), "rule__Selecao__ExpAssignment_3_2");
+					put(grammarAccess.getDefineAccess().getExpAssignment_3(), "rule__Define__ExpAssignment_3");
+					put(grammarAccess.getDefineAccess().getSelAssignment_4(), "rule__Define__SelAssignment_4");
 				}
 			};
 		}

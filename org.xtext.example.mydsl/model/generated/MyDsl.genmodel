@@ -11,6 +11,14 @@
     </genClasses>
     <genClasses ecoreClass="MyDsl.ecore#//Greeting">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//Greeting/value"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Greeting/Exp"/>
+    </genClasses>
+    <genClasses ecoreClass="MyDsl.ecore#//Expressao">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//Expressao/name"/>
+    </genClasses>
+    <genClasses ecoreClass="MyDsl.ecore#//Selecao"/>
+    <genClasses ecoreClass="MyDsl.ecore#//Define">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Define/Sel"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

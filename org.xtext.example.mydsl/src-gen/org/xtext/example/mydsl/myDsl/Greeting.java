@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link org.xtext.example.mydsl.myDsl.Greeting#getValue <em>Value</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.Greeting#getExp <em>Exp</em>}</li>
  * </ul>
  *
  * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getGreeting()
@@ -48,5 +49,31 @@ public interface Greeting extends EObject
    * @generated
    */
   void setValue(int value);
+
+  /**
+   * Returns the value of the '<em><b>Exp</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Exp</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Exp</em>' containment reference.
+   * @see #setExp(Expressao)
+   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getGreeting_Exp()
+   * @model containment="true"
+   * @generated
+   */
+  Expressao getExp();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.Greeting#getExp <em>Exp</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Exp</em>' containment reference.
+   * @see #getExp()
+   * @generated
+   */
+  void setExp(Expressao value);
 
 } // Greeting

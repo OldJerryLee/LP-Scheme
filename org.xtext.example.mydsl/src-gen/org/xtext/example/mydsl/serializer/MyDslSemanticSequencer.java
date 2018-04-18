@@ -11,10 +11,15 @@ import org.eclipse.xtext.Action;
 import org.eclipse.xtext.Parameter;
 import org.eclipse.xtext.ParserRule;
 import org.eclipse.xtext.serializer.ISerializationContext;
+import org.eclipse.xtext.serializer.acceptor.SequenceFeeder;
 import org.eclipse.xtext.serializer.sequencer.AbstractDelegatingSemanticSequencer;
+import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransient;
+import org.xtext.example.mydsl.myDsl.Define;
+import org.xtext.example.mydsl.myDsl.Expressao;
 import org.xtext.example.mydsl.myDsl.Greeting;
 import org.xtext.example.mydsl.myDsl.Model;
 import org.xtext.example.mydsl.myDsl.MyDslPackage;
+import org.xtext.example.mydsl.myDsl.Selecao;
 import org.xtext.example.mydsl.services.MyDslGrammarAccess;
 
 @SuppressWarnings("all")
@@ -31,11 +36,20 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 		Set<Parameter> parameters = context.getEnabledBooleanParameters();
 		if (epackage == MyDslPackage.eINSTANCE)
 			switch (semanticObject.eClass().getClassifierID()) {
+			case MyDslPackage.DEFINE:
+				sequence_Define(context, (Define) semanticObject); 
+				return; 
+			case MyDslPackage.EXPRESSAO:
+				sequence_Expressao(context, (Expressao) semanticObject); 
+				return; 
 			case MyDslPackage.GREETING:
 				sequence_Greeting(context, (Greeting) semanticObject); 
 				return; 
 			case MyDslPackage.MODEL:
 				sequence_Model(context, (Model) semanticObject); 
+				return; 
+			case MyDslPackage.SELECAO:
+				sequence_Selecao(context, (Selecao) semanticObject); 
 				return; 
 			}
 		if (errorAcceptor != null)
@@ -44,13 +58,45 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	/**
 	 * Contexts:
+	 *     Greeting returns Define
+	 *     Define returns Define
+	 *
+	 * Constraint:
+	 *     (Exp=Expressao Sel=Selecao?)
+	 */
+	protected void sequence_Define(ISerializationContext context, Define semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Greeting returns Expressao
+	 *     Expressao returns Expressao
+	 *
+	 * Constraint:
+	 *     (name=ID? (value=INT | Exp=Expressao)? value=INT? (Exp=Expressao? value=INT?)*)
+	 */
+	protected void sequence_Expressao(ISerializationContext context, Expressao semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     Greeting returns Greeting
 	 *
 	 * Constraint:
-	 *     ((value=INT value=INT) | value=INT)
+	 *     value=INT
 	 */
 	protected void sequence_Greeting(ISerializationContext context, Greeting semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.GREETING__VALUE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.GREETING__VALUE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getGreetingAccess().getValueINTTerminalRuleCall_1_0(), semanticObject.getValue());
+		feeder.finish();
 	}
 	
 	
@@ -62,6 +108,19 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     greetings+=Greeting
 	 */
 	protected void sequence_Model(ISerializationContext context, Model semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Greeting returns Selecao
+	 *     Selecao returns Selecao
+	 *
+	 * Constraint:
+	 *     ((Exp=Expressao Exp=Expressao*)+ Exp=Expressao*)
+	 */
+	protected void sequence_Selecao(ISerializationContext context, Selecao semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

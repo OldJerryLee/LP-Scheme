@@ -6,8 +6,43 @@ Model:
 	greetings+=Greeting;
 	
 Greeting:
-	'(' Op value=INT value=INT ')' | value=INT;
+	Expressao | value=INT | Predicado | Selecao | Define ;
 
 Op:
 	'+'|'-'|'*'|'expt'|'/'
 ;
+
+Expressao:
+	('(' (Op | name=ID)? (value=INT | Exp = Expressao | SIMBOLO)(value=INT | Exp = Expressao | SIMBOLO)* ')')
+	
+;
+
+Comparador:
+	'>' | '<'| '>=' | '<='
+;
+
+Predicado:
+	
+	'(' Comparador (SIMBOLO) (SIMBOLO) ')'
+;
+
+Selecao:
+	'(' 'cond' ('(' ((Predicado)(Exp=Expressao)(Exp=Expressao)*)')')+
+	('(' 'else' (Exp=Expressao)+ ')')? ')'
+;
+
+
+Define:
+	'(' 'define' (SIMBOLO)(Exp=Expressao)(Sel= Selecao)?  ')'
+;
+
+
+
+terminal
+SIMBOLO:
+	('a'..'z'|'A'..'Z'|'-'|'0'..'9'| '#') ('a'..'z'|'A'..'Z'|'-')*
+;
+
+
+//Fontes:  Gramática - https://web.fe.up.pt/~fnf/leic/ip1/cap1.PDF
+//		   Fatorial  - https://gist.github.com/laurenceputra/985638

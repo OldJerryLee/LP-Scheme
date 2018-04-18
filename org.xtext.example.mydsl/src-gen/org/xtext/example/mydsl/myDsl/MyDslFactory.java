@@ -42,6 +42,33 @@ public interface MyDslFactory extends EFactory
   Greeting createGreeting();
 
   /**
+   * Returns a new object of class '<em>Expressao</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Expressao</em>'.
+   * @generated
+   */
+  Expressao createExpressao();
+
+  /**
+   * Returns a new object of class '<em>Selecao</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Selecao</em>'.
+   * @generated
+   */
+  Selecao createSelecao();
+
+  /**
+   * Returns a new object of class '<em>Define</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Define</em>'.
+   * @generated
+   */
+  Define createDefine();
+
+  /**
    * Returns the package supported by this factory.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
